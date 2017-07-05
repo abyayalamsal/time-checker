@@ -8,16 +8,27 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class TimeController {
+	
+	private String strMinutes;
+	private String strHours;
 
 	private int minutes;
 	private int hours;
 	
+
+	public TimeController(String strMinutes, String strHours) {
+		this.setStrMinutes(strMinutes);
+		this.setStrHours(strHours);
+	}
+
+
 	@RequestMapping(value = "/api/v1/time/NewYork", method = RequestMethod.GET)
 	@ResponseBody
-	public String getTime(
+	public String getConvertedTime(
 			@RequestParam(value = "time", required = true) String temp,
 			@RequestParam(value = "city", required = false) String name){
-		String numOnly = temp.substring(0, 4);
+		
+		String numOnly = temp.substring(0, 5);
 		String [] components = numOnly.split(":");
 		hours = Integer.parseInt(components[0]);
 		minutes = Integer.parseInt(components[1]);
@@ -30,7 +41,27 @@ public class TimeController {
 	    	NYMinutes = 60 + NYMinutes;
 	    }
 	    String newLine = System.getProperty("line.separator");
-	    return newLine + "city: New York" + newLine + "time: " + NYHour + ":" + NYMinutes;
+	    return newLine + "city: KTM" + newLine + "time: " + numOnly + newLine + "city: New York" + newLine + "time: " + NYHour + ":" + NYMinutes;
+	}
+
+
+	public String getStrMinutes() {
+		return strMinutes;
+	}
+
+
+	public void setStrMinutes(String strMinutes) {
+		this.strMinutes = strMinutes;
+	}
+
+
+	public String getStrHours() {
+		return strHours;
+	}
+
+
+	public void setStrHours(String strHours) {
+		this.strHours = strHours;
 	}
 	
 	
