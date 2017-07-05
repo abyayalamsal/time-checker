@@ -32,16 +32,31 @@ public class TimeController {
 		String [] components = numOnly.split(":");
 		hours = Integer.parseInt(components[0]);
 		minutes = Integer.parseInt(components[1]);
+		
+		
+	    
 	    int NYHour = hours - 9;
 	    if (NYHour < 0){
 	    	NYHour = 12 + NYHour;
 	    }
+	    
 	    int NYMinutes = minutes - 45;
 	    if (NYMinutes < 0){
 	    	NYMinutes = 60 + NYMinutes;
+	    	NYHour -= 1;
 	    }
+	    
+	    String strMin = Integer.toString(NYMinutes);
+	    String strHr = Integer.toString(NYHour);
+	    if (strMin.length() == 1){
+	    	strMin = "0" + strMin;
+	    }
+	    if (strHr.length() == 1){
+	    	strHr = "0" + strHr;
+	    }
+	    
 	    String newLine = System.getProperty("line.separator");
-	    return newLine + "city: KTM" + newLine + "time: " + numOnly + newLine + "city: New York" + newLine + "time: " + NYHour + ":" + NYMinutes;
+	    return "city: KTM" + newLine + "time: " + numOnly + newLine + "city: New York" + newLine + "time: " + strHr + ":" + strMin;
 	}
 
 
