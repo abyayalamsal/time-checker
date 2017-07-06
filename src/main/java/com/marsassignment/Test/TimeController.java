@@ -12,19 +12,19 @@ public class TimeController {
 	private String strMinutes;
 	private String strHours;
 
-	private int minutes;
-	private int hours;
+	private static int minutes;
+	private static int hours;
 	
 
-	public TimeController(String strMinutes, String strHours) {
+	/*public TimeController(String strMinutes, String strHours) {
 		this.setStrMinutes(strMinutes);
 		this.setStrHours(strHours);
-	}
+	}*/
 
 
 	@RequestMapping(value = "/api/v1/time/NewYork", method = RequestMethod.GET)
 	@ResponseBody
-	public String getConvertedTime(
+	public static String getConvertedTime(
 			@RequestParam(value = "time", required = true) String temp,
 			@RequestParam(value = "city", required = false) String name){
 		
